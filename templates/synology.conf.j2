@@ -1,0 +1,160 @@
+<Plugin snmp>
+
+  <Data "synology_system_cpu_user">
+    Type "cpu"
+    Table false
+    Instance "User"
+    Values ".1.3.6.1.4.1.2021.11.9.0"
+  </Data>
+
+  <Data "synology_system_cpu_system">
+    Type "cpu"
+    Table false
+    Instance "System"
+    Values ".1.3.6.1.4.1.2021.11.10.0"
+  </Data>
+
+  <Data "synology_system_cpu_idle">
+    Type "cpu"
+    Table false
+    Instance "Idle"
+    Values ".1.3.6.1.4.1.2021.11.11.0"
+  </Data>
+
+  <Data "synology_temperature_system">
+    Type "temperature"
+    Table false
+    Instance "System"
+    Values ".1.3.6.1.4.1.6574.1.2.0"
+  </Data>
+
+  <Data "synology_temperature_disk">
+    Type "temperature"
+    Table true
+    Instance ".1.3.6.1.4.1.6574.2.1.1.2"
+    Values ".1.3.6.1.4.1.6574.2.1.1.6"
+  </Data>
+
+  <Data "synology_status_system">
+    Type "current"
+    Table false
+    Instance "Status System"
+    Values ".1.3.6.1.4.1.6574.1.1.0"
+  </Data>
+
+  <Data "synology_status_disk">
+    Type "current"
+    Table true
+    InstancePrefix "Status "
+    Instance ".1.3.6.1.4.1.6574.2.1.1.2"
+    Values ".1.3.6.1.4.1.6574.2.1.1.5"
+  </Data>
+
+  <Data "synology_status_raid">
+    Type "current"
+    Table true
+    InstancePrefix "Status "
+    Instance ".1.3.6.1.4.1.6574.3.1.1.2"
+    Values ".1.3.6.1.4.1.6574.3.1.1.3"
+  </Data>
+
+  <Data "synology_status_systemfan">
+    Type "current"
+    Table false
+    Instance "Status Fan System"
+    Values ".1.3.6.1.4.1.6574.1.4.1.0"
+  </Data>
+
+  <Data "synology_status_cpufan">
+    Type "current"
+    Table false
+    Instance "Status Fan CPU"
+    Values ".1.3.6.1.4.1.6574.1.4.2.0"
+  </Data>
+
+  <Data "synology_system_load">
+    Type "load"
+    Scale 0.01
+    Table false
+    Values ".1.3.6.1.4.1.2021.10.1.5.1" ".1.3.6.1.4.1.2021.10.1.5.2" ".1.3.6.1.4.1.2021.10.1.5.3"
+  </Data>
+
+  <Data "synology_system_swap_total">
+    Type "swap"
+    Table false
+    Instance "Total"
+    Scale 1024.00
+    Values ".1.3.6.1.4.1.2021.4.3.0"
+  </Data>
+
+  <Data "synology_system_swap_free">
+    Type "swap"
+    Table false
+    Instance "Free"
+    Scale 1024.00
+    Values ".1.3.6.1.4.1.2021.4.4.0"
+  </Data>
+
+  <Data "synology_system_memory_total">
+    Type "memory"
+    Table false
+    Instance "Total"
+    Scale 1024.00
+    Values ".1.3.6.1.4.1.2021.4.5.0"
+  </Data>
+
+  <Data "synology_system_memory_free">
+    Type "memory"
+    Table false
+    Instance "Free"
+    Scale 1024.00
+    Values ".1.3.6.1.4.1.2021.4.6.0"
+  </Data>
+
+  <Data "synology_system_vsmemory_total">
+    Type "vs_memory"
+    Table false
+    Instance "Total"
+    Scale 1024.00
+    Values ".1.3.6.1.4.1.2021.4.11.0"
+  </Data>
+
+  <Data "synology_system_vsmemory_shared">
+    Type "vs_memory"
+    Table false
+    Instance "Shared"
+    Scale 1024.00
+    Values ".1.3.6.1.4.1.2021.4.13.0"
+  </Data>
+
+  <Data "synology_system_vsmemory_buffer">
+    Type "vs_memory"
+    Table false
+    Instance "Buffer"
+    Scale 1024.00
+    Values ".1.3.6.1.4.1.2021.4.14.0"
+  </Data>
+
+  <Data "synology_system_vsmemory_cached">
+    Type "vs_memory"
+    Table false
+    Instance "Cached"
+    Scale 1024.00
+    Values ".1.3.6.1.4.1.2021.4.15.0"
+  </Data>
+
+  <Data "synology_system_network_octets">
+    Type "if_octets"
+    Table true
+    Instance ".1.3.6.1.2.1.31.1.1.1.1"
+    Values ".1.3.6.1.2.1.31.1.1.1.6" ".1.3.6.1.2.1.31.1.1.1.10"
+  </Data>
+
+  <Host "synology">
+    Address "{{ synology_ip_address }}"
+    Version 2
+    Community "{{ synology_snmp_community }}"
+    Collect "synology_system_cpu_user" "synology_system_cpu_system" "synology_system_cpu_idle" "synology_temperature_system" "synology_temperature_disk" "synology_status_system" "synology_status_disk" "synology_status_raid" "synology_status_systemfan" "synology_status_cpufan" "synology_system_load" "synology_system_swap_total" "synology_system_swap_free" "synology_system_memory_total" "synology_system_memory_free" "synology_system_vsmemory_total" "synology_system_vsmemory_shared" "synology_system_vsmemory_buffer" "synology_system_vsmemory_cached" "synology_system_network_octets"
+    Interval 60
+  </Host>
+</Plugin>

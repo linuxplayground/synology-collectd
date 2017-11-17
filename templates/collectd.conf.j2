@@ -1,0 +1,18 @@
+LoadPlugin snmp
+LoadPlugin write_graphite
+<Plugin write_graphite>
+  <Node "Synology">
+    Host "{{ graphite_ip_address }}"
+    Port "{{ graphite_tcp_port }}"
+    Protocol "tcp"
+    ReconnectInterval 0
+    LogSendErrors true
+    Prefix "collectd"
+    Postfix "collectd"
+    StoreRates true
+    AlwaysAppendDS false
+    EscapeCharacter "_"
+    SeparateInstances false
+  </Node>
+</Plugin>
+Include "/etc/collectd/synology.conf"
