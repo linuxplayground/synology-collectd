@@ -3,7 +3,7 @@ export PATH := ./bin:./venv/bin:$(PATH)
 PYTHON ?= $(shell command -v python3.5 || command -v python3.6)
 
 include make_env
-default:
+default: build
 
 build: config
 	docker build -t  $(DOCKER_NAMESPACE)/$(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) .
